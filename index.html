@@ -8,7 +8,43 @@
     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
   <script src="https://unpkg.com/react-bootstrap@next/dist/react-bootstrap.min.js" crossorigin></script>
 
-  <script>var Alert = ReactBootstrap.Alert;</script>
-</head>
+  <script>class Timer extends React.Component {
+      constructor(props) {
+        super(props);
+        this.state = { seconds: 0 };
+      }
 
+      tick() {
+        this.setState(state => ({
+          seconds: state.seconds + 1
+        }));
+      }
+
+      componentDidMount() {
+        this.interval = setInterval(() => this.tick(), 1000);
+      }
+
+      componentWillUnmount() {
+        clearInterval(this.interval);
+      }
+
+      render() {
+        return (
+          <div>
+            Seconds: {this.state.seconds}
+          </div>
+        );
+      }
+    }
+
+    ReactDOM.render(
+      <Timer />,
+      document.getElementById('timer-example')
+    );</script>
+</head>
+<body>
+  <div class="timer-example">
+    
+  </div>
+</body>
 </html>
